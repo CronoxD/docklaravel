@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+    command: > 
+      bash -c "php artisan migrate &&
+               php artisan serve --host=0.0.0.0 --port=8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/src
+    depends_on:
+      - dbadip
+  dbadip:
+    image: postgres:10-alpine
+    environment:
+      - POSTGRES_DB=adip
+      - POSTGRES_USER=octavio
+      - POSTGRES_PASSWORD=secret@123
