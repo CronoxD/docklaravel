@@ -20,3 +20,6 @@ RUN mkdir /src
 COPY ./src /src
 
 WORKDIR /src
+
+RUN adduser -D user
+USER user

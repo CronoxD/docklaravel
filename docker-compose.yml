@@ -2,20 +2,26 @@ version: '3'
 
 services:
   web:
+    container_name: 'web'
     build:
       context: .
     command: > 
-      bash -c "php artisan migrate &&
-               php artisan serve --host=0.0.0.0 --port=8000"
+      bash -c "php artisan serve --host=0.0.0.0 --port=8000"
     ports:
       - "8000:8000"
     volumes:
       - ./src:/src
     depends_on:
-      - dbadip
-  dbadip:
+      - db
+  db:
+    container_name: 'db'
     image: postgres:10-alpine
     environment:
-      - POSTGRES_DB=adip
-      - POSTGRES_USER=octavio
+      - POSTGRES_DB=project
+      - POSTGRES_USER=username
       - POSTGRES_PASSWORD=secret@123
+    volumes:
+      - poliga:/var/lib/postgresql/data
+
+volumes:
+  db:
