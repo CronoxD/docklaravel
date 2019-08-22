@@ -21,7 +21,7 @@ services:
       - POSTGRES_USER=username
       - POSTGRES_PASSWORD=secret@123
     volumes:
-      - poliga:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
 
 volumes:
   db:
